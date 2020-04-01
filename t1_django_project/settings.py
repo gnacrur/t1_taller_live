@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '4*qsxyxq=a&32e^gffu9!2*k(!@a2z@ox!(vtnxxd)$ijp=8=*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['gn-t1-taller-integracion.herokuapp.com', '127.0.0.1']
 
