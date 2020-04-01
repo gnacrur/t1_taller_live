@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content%}
+    <div class="card" align="center" style="width: 18rem; margin: 20px; float: left;"  >
+        <img src={{image}} class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{name}}</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Especie: {{species}}</li>
+            <li class="list-group-item" >Origen: {{origin.name}}</li>
+              {%if location.name != "unknown"%}
+              <label style="margin-top: 10px"> Última ubicación: <a href="{% url 'lugar' location.id %}" class="btn btn-primary">{{location.name}}</a> </label>
+              {% else %}
+              <label style="margin-top: 10px"> Última ubicación: <button disabled href="#" class="btn btn-primary">{{location.name}}</button> </label>
+              {% endif %}
+          </ul>
+
+
+
+      </div>
+    </div>
+    <div style="background-color: #666; margin: 20px; display: inline-block;">
+            <h2 style="margin-left: 40px"> Apariciones</h2>
+                <ul class="list-group list-group-horizontal"  style="display: grid;grid-template-columns: repeat(4, 1fr); grid-gap: 1em; width: 80%; margin-left: 40px">
+                    {% for cap in lista_capitulos %}
+                        <li > <a href = "{% url 'capitulo' cap.id %}" class="badge badge-secondary">{{cap.nombre}}</a></li>
+                    {% endfor %}
+                </ul>
+      </div>
+
+{% endblock %}

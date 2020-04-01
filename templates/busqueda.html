@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content%}
+
+    <h3 >Resultados busqueda:</h3>
+        <div class="card" align="center" style="width:90%; margin: 40px">
+            <table class="table table-dark" style="background-color: #666 ;width:100%; text-align: left;">
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Tipo</th>
+
+                  </tr>
+            {% for personaje in results_personajes %}
+                     <tr>
+                        <td><a style="font-size:150%;"  href = "{% url 'personaje' personaje.id %}">{{personaje.name}}</a></td>
+                        <td>Personaje</td>
+
+                      </tr>
+
+                {% endfor %}
+
+            {% for lugar in results_lugares %}
+                     <tr>
+                        <td><a style="font-size:150%;"  href = "{% url 'lugar' lugar.id %}">{{lugar.name}}</a></td>
+                        <td>Lugar</td>
+
+                      </tr>
+
+                {% endfor %}
+
+            {% for capitulo in results_capitulos %}
+                     <tr>
+                        <td><a style="font-size:150%;"  href = "{% url 'capitulo' capitulo.id %}">{{capitulo.name}}</a></td>
+                        <td>Episodio</td>
+
+                      </tr>
+
+                {% endfor %}
+                </table>
+        </div>
+{% endblock %}
+

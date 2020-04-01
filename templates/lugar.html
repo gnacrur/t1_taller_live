@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content%}
+    <div align="center" class="card text-center bg-secondary" style="margin: 20px; width:30%;">
+      <div class="card-header">
+          Dimensión: {{dimension}}
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{name}}</h5>
+      </div>
+      <div class="card-footer">
+        Tipo: {{type}}
+      </div>
+    </div>
+    <h2 style="margin-left: 40px">Personajes</h2>
+    <ul class="list-group list-group-horizontal"  style="display: grid;grid-template-columns: repeat(4, 1fr); grid-gap: 1em; width: 80%; margin-left: 40px">
+        {% for personaje in lista_personajes %}
+            <li > <a href = "{% url 'personaje' personaje.id %}" class="badge badge-secondary">{{personaje.nombre}}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content%}
+
+    <h1 align="center" >Episodios</h1>
+        <div class="card" align="center" style="width:90%; margin: 40px">
+            <table class="table table-dark" style="background-color: #666 ;width:100%; text-align: left;">
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Al aire</th>
+                    <th>Código</th>
+                  </tr>
+            {% for episodio in results %}
+                     <tr>
+                        <td><a style="font-size:150%;"  href = "{% url 'capitulo' episodio.id %}">{{episodio.name}}</a></td>
+                        <td>{{episodio.air_date}}</td>
+                        <td>{{episodio.episode}}</td>
+                      </tr>
+
+                {% endfor %}
+                </table>
+        </div>
+{% endblock %}
+
+
+
+
+
