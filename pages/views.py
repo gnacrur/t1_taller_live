@@ -4,7 +4,7 @@ import requests
 
 # Create your views here.
 def home_view(request):
-    response = requests.get('https://rickandmortyapi.com/api/episode')
+    response = requests.get('https://integracion-rick-morty-api.herokuapp.com/api/episode')
     data = response.json()
     url_next = data["info"]["next"]
     while url_next != "":
@@ -16,13 +16,13 @@ def home_view(request):
 
 
 def capitulo_view(request, num = 1):
-    response = requests.get(f'https://rickandmortyapi.com/api/episode/{num}')
+    response = requests.get(f'https://integracion-rick-morty-api.herokuapp.com/api/episode/{num}')
     data = response.json()
     links = data["characters"]
     characters = []
     for link in links:
         characters.append(int(link.split('/')[-1]))
-    response2 = requests.get(f'https://rickandmortyapi.com/api/character/{characters}')
+    response2 = requests.get(f'https://integracion-rick-morty-api.herokuapp.com/api/character/{characters}')
     data2 = response2.json()
     lista_personajes = []
     for perso in data2:
@@ -34,13 +34,13 @@ def capitulo_view(request, num = 1):
     return render(request, "capitulo.html", data)
 
 def personaje_view(request, num = 1):
-    response = requests.get(f'https://rickandmortyapi.com/api/character/{num}')
+    response = requests.get(f'https://integracion-rick-morty-api.herokuapp.com/api/character/{num}')
     data = response.json()
     links = data["episode"]
     capitulos = []
     for link in links:
         capitulos.append(int(link.split('/')[-1]))
-    response2 = requests.get(f'https://rickandmortyapi.com/api/episode/{capitulos}')
+    response2 = requests.get(f'https://integracion-rick-morty-api.herokuapp.com/api/episode/{capitulos}')
     data2 = response2.json()
     lista_capitulos = []
     for cap in data2:
@@ -56,13 +56,13 @@ def personaje_view(request, num = 1):
     return render(request, "personaje.html", data)
 
 def lugar_view(request, num = 1):
-    response = requests.get(f'https://rickandmortyapi.com/api/location/{num}')
+    response = requests.get(f'https://integracion-rick-morty-api.herokuapp.com/api/location/{num}')
     data = response.json()
     links = data["residents"]
     characters = []
     for link in links:
         characters.append(int(link.split('/')[-1]))
-    response2 = requests.get(f'https://rickandmortyapi.com/api/character/{characters}')
+    response2 = requests.get(f'https://integracion-rick-morty-api.herokuapp.com/api/character/{characters}')
     data2 = response2.json()
     lista_personajes = []
     for perso in data2:
@@ -76,11 +76,11 @@ def lugar_view(request, num = 1):
 def busqueda_view(request):
     if request.method == 'GET': # If the form is submitted
         search_query = request.GET.get('search_box', None)
-    response_personajes = requests.get(f'https://rickandmortyapi.com/api/character/?name={search_query}')
+    response_personajes = requests.get(f'https://integracion-rick-morty-api.herokuapp.com/api/character/?name={search_query}')
     data_personajes = response_personajes.json()
-    response_lugares = requests.get(f'https://rickandmortyapi.com/api/location/?name={search_query}')
+    response_lugares = requests.get(f'https://integracion-rick-morty-api.herokuapp.com/api/location/?name={search_query}')
     data_lugares = response_lugares.json()
-    response_capitulos = requests.get(f'https://rickandmortyapi.com/api/episode/?name={search_query}')
+    response_capitulos = requests.get(f'https://integracion-rick-morty-api.herokuapp.com/api/episode/?name={search_query}')
     data_capitulos = response_capitulos.json()
     data = dict()
     if "info" in data_personajes.keys():
